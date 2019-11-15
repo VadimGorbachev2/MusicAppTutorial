@@ -15,6 +15,7 @@
 		3A501507237F228D00267ED4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A501505237F228D00267ED4 /* LaunchScreen.storyboard */; };
 		3A50150F237F230000267ED4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A50150E237F230000267ED4 /* MainTabBarController.swift */; };
 		3AA37096237F2D7F0079414C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA37095237F2D7F0079414C /* SearchViewController.swift */; };
+		3AA3709C237F40EC0079414C /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA3709B237F40EC0079414C /* TrackModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3A501508237F228D00267ED4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A50150E237F230000267ED4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3AA37095237F2D7F0079414C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		3AA3709B237F40EC0079414C /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +62,58 @@
 		3A5014F9237F227600267ED4 /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
+				3A501508237F228D00267ED4 /* Info.plist */,
+				3A50150E237F230000267ED4 /* MainTabBarController.swift */,
+				3AA37099237F409C0079414C /* Search */,
+				3AA3709A237F40AD0079414C /* Library */,
+				3AA37097237F3E780079414C /* Supporting files */,
+			);
+			path = MusicApp;
+			sourceTree = "<group>";
+		};
+		3AA37097237F3E780079414C /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
 				3A5014FA237F227600267ED4 /* AppDelegate.swift */,
 				3A5014FC237F227600267ED4 /* SceneDelegate.swift */,
-				3A5014FE237F227600267ED4 /* ViewController.swift */,
-				3A50150E237F230000267ED4 /* MainTabBarController.swift */,
-				3AA37095237F2D7F0079414C /* SearchViewController.swift */,
 				3A501500237F227600267ED4 /* Main.storyboard */,
 				3A501503237F228D00267ED4 /* Assets.xcassets */,
 				3A501505237F228D00267ED4 /* LaunchScreen.storyboard */,
-				3A501508237F228D00267ED4 /* Info.plist */,
 			);
-			path = MusicApp;
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		3AA37099237F409C0079414C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				3AA3709D237F41280079414C /* Controller */,
+				3AA3709E237F41360079414C /* Model */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		3AA3709A237F40AD0079414C /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3A5014FE237F227600267ED4 /* ViewController.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		3AA3709D237F41280079414C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3AA37095237F2D7F0079414C /* SearchViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3AA3709E237F41360079414C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3AA3709B237F40EC0079414C /* TrackModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA37096237F2D7F0079414C /* SearchViewController.swift in Sources */,
+				3AA3709C237F40EC0079414C /* TrackModel.swift in Sources */,
 				3A5014FF237F227600267ED4 /* ViewController.swift in Sources */,
 				3A5014FB237F227600267ED4 /* AppDelegate.swift in Sources */,
 				3A50150F237F230000267ED4 /* MainTabBarController.swift in Sources */,
