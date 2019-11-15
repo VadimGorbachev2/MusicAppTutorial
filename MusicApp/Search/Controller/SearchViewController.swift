@@ -12,6 +12,9 @@ import UIKit
 class SearchViewController: UITableViewController {
     
     private let cellId = "cellId"
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    // MARK: data temporary solution
     let tracks  = [TrackModel(trackName: "Never Gonna Give You Up", artistName: "Rick Astley"), TrackModel(trackName: "Crash", artistName: "Tessa Violet")]
     
     override func viewDidLoad() {
@@ -19,7 +22,7 @@ class SearchViewController: UITableViewController {
         view.backgroundColor = .white
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        
+        setupSearchBar()
     }
     
     // MARK: tableView methods
@@ -31,7 +34,21 @@ class SearchViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let track = tracks[indexPath.row]
         cell.textLabel?.text = "\(track.trackName)\n\(track.artistName)"
+        cell.textLabel?.numberOfLines = 2
+        cell.imageView?.image = #imageLiteral(resourceName: "Image")
         return cell
-        
+    }
+    // MARK: SearchController customization
+    private func setupSearchBar() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        searchController.searchBar.delegate = self
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
     }
 }
