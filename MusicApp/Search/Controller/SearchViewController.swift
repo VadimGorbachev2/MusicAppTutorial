@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 
 class SearchViewController: UITableViewController {
@@ -49,6 +50,18 @@ class SearchViewController: UITableViewController {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+     //   print(searchText)
+        
+        let url = "https://itunes.apple.com/search?term=\(searchText)"
+        Alamofire.request(url).responseData { (dataResponse) in
+            if let error = dataResponse.error {
+                print("error recieved requesting data: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let data = dataResponse.data else { return }
+            let someString = String(data: data, encoding: .utf8)
+            print(someString ?? "")
+        }
     }
 }
