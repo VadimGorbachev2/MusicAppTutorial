@@ -8,16 +8,17 @@
 
 import Foundation
 
-struct TrackModel {
+struct Track: Decodable {
     var trackName: String
-    var collectionName: String
+    var collectionName: String?
     var artistName: String
-    var artworkUrl100: String
+    var artworkUrl100: String?   //  album's icon
     
 }
 
+// Decodable for work with apple search api json
 
-struct SearchResponse {
-    var reusltCount: Int
-    var results: [TrackModel]
+struct SearchResponse: Decodable {
+    var resultCount: Int
+    var results: [Track]
 }

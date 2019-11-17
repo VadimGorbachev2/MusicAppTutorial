@@ -9,15 +9,20 @@
 import UIKit
 import Alamofire
 
+//struct Track {
+//    var trackName: String
+//    var artistName: String
+//}
 
 class SearchViewController: UITableViewController {
     
     private let cellId = "cellId"
+    private var timer: Timer?
     let searchController = UISearchController(searchResultsController: nil)
     
-    // MARK: data temporary solution
-    let tracks  = [TrackModel(trackName: "Never Gonna Give You Up", artistName: "Rick Astley"), TrackModel(trackName: "Crash", artistName: "Tessa Violet")]
-    
+    // MARK: loading data solution
+    var tracks  =  [Track]()
+
     override func viewDidLoad() {
         
         view.backgroundColor = .white
@@ -47,21 +52,41 @@ class SearchViewController: UITableViewController {
     }
 }
 
+
+// MARK: Search bar extension with reloading data from apple search api
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
      //   print(searchText)
         
-        let url = "https://itunes.apple.com/search?term=\(searchText)"
-        Alamofire.request(url).responseData { (dataResponse) in
-            if let error = dataResponse.error {
-                print("error recieved requesting data: \(error.localizedDescription)")
-                return
-            }
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             
-            guard let data = dataResponse.data else { return }
-            let someString = String(data: data, encoding: .utf8)
-            print(someString ?? "")
-        }
+            let url = "https://itunes.apple.com/search"
+            let  paramentrs = ["term":"\(searchText)","limit":"10"]
+                        
+            Alamofire.request( url, method: .get, parameters: paramentrs, encoding: URLEncoding.default, headers: nil).responseData { (dataResponse) in
+                
+                if let error = dataResponse.error {
+                    print("error recieved requesting data: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let data = dataResponse.data else { return }
+                
+                let decoder = JSONDecoder()
+                do {
+                    let objects = try decoder.decode( SearchResponse.self, from: data)
+                    print("objects: ", objects)
+                    self.tracks = objects.results
+                    self.tableView.reloadData()
+                    
+                } catch let jsonError {
+                    print("failed to decode JSON", jsonError)
+                }
+            }
+                     
+        })
+         
     }
 }
