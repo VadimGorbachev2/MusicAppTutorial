@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  SearchMusicViewController.swift
 //  MusicApp
 //
 //  Created by Vadim  Gorbachev on 15.11.2019.
@@ -14,7 +14,7 @@ import Alamofire
 //    var artistName: String
 //}
 
-class SearchViewController: UITableViewController {
+class SearchMusicViewController: UITableViewController {
     
     private let cellId = "cellId"
     private var timer: Timer?
@@ -55,7 +55,7 @@ class SearchViewController: UITableViewController {
 
 
 // MARK: Search bar extension with reloading data from apple search api
-extension SearchViewController: UISearchBarDelegate {
+extension SearchMusicViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
      //   print(searchText)

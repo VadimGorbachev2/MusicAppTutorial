@@ -13,7 +13,7 @@ class NetworkService {
     
     
     // MARK: loading data from apple search api
-    
+    // разобраться с клоужерами и complition'ами 
     
     func fetchTracks(searchText: String, complition: @escaping (SearchResponse?) -> Void) {
 
