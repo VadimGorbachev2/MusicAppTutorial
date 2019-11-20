@@ -12,9 +12,7 @@
 
 import UIKit
 
-class SearchWorker
+class SearchService
 {
-  func doSomeWork()
-  {
-  }
+ 
 }

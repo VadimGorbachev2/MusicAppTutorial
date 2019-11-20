@@ -17,15 +17,10 @@ import UIKit
   //func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
-protocol SearchDataPassing
-{
-  var dataStore: SearchDataStore? { get }
-}
-
-class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing
+class SearchRouter: NSObject, SearchRoutingLogic
 {
   weak var viewController: SearchViewController?
-  var dataStore: SearchDataStore?
+ 
   
   // MARK: Routing
   

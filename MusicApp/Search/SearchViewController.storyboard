@@ -19,8 +19,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="ibj-KB-2ht" id="qGD-qA-Xct"/>
-                                    <outlet property="delegate" destination="ibj-KB-2ht" id="G8a-fW-6JT"/>
+                                    <outlet property="dataSource" destination="ibj-KB-2ht" id="GOb-Ou-wvJ"/>
+                                    <outlet property="delegate" destination="ibj-KB-2ht" id="ZHQ-gy-g8N"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -34,7 +34,7 @@
                         <viewLayoutGuide key="safeArea" id="OCj-HJ-ipi"/>
                     </view>
                     <connections>
-                        <outlet property="table" destination="N4t-zH-8vI" id="Rjd-n0-nA5"/>
+                        <outlet property="table" destination="yhg-D7-x5E" id="q19-zO-oKd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hao-qW-Szy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -12,107 +12,92 @@
 
 import UIKit
 
-protocol SearchDisplayLogic: class
-{
-  func displaySomething(viewModel: Search.Something.ViewModel)
+protocol SearchDisplayLogic: class {
+    func displayData(viewModel: Search.Model.ViewModel.ViewModelData)
 }
 
-class SearchViewController: UIViewController, SearchDisplayLogic
-{
-    @IBOutlet weak var table: UITableView!
+class SearchViewController: UIViewController, SearchDisplayLogic {
+    
     var interactor: SearchBusinessLogic?
-    var router: (NSObjectProtocol & SearchRoutingLogic & SearchDataPassing)?
-    let searchController = UISearchController(searchResultsController: nil)
+    var router: (NSObjectProtocol & SearchRoutingLogic)?
+    
+
+    @IBOutlet var table: UITableView!
+    
     private let cellId = "cellId"
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = SearchInteractor()
-    let presenter = SearchPresenter()
-    let router = SearchRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    
+    // MARK: setup
+    
+    private func setup() {
+        let viewController = self
+        let interactor = SearchInteractor()
+        let presenter = SearchPresenter()
+        let router = SearchRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-    setupSearchBar()
-    setupTableView()
-    setup()
-  
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = Search.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: Search.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
     
+    // MARK: Routing
     
-// MARK: my functions
-  private func setupSearchBar() {
-    navigationItem.searchController = searchController
-    navigationItem.hidesSearchBarWhenScrolling = true
-    searchController.searchBar.delegate = self
-  }
-    // registration of cell
-  private func setupTableView() {
-    table.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-  }
+    // MARK: View lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setup()
+        setupTableView()
+        setupSearchBar()
+        
+    }
+    
+    private func setupTableView() {
+        table.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+    }
+    private func setupSearchBar() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.delegate = self
+        
+    }
+    
+    func displayData(viewModel: Search.Model.ViewModel.ViewModelData) {
+        
+        switch viewModel {
+        case .some:
+            print("viewController .some")
+        case .displayTracks:
+            print("viewController .displayTracks")
+            
+        }
+    }
     
 }
 
-// MARK: UITableViewDelegate and UITableViewDataSource
+// MARK: UITableViewDelegate, UITableViewDataSource
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-   
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = "cell number \(indexPath)"
+        cell.textLabel?.text = "indexPath: \(indexPath)"
         return cell
-    }
 
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String ) {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
+        interactor?.makeRequest( request: Search.Model.Request.RequestType.getTracks)
     }
 }

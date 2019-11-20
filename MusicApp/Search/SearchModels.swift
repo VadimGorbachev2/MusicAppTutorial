@@ -16,16 +16,24 @@ enum Search
 {
   // MARK: Use cases
   
-  enum Something
-  {
-    struct Request
-    {
+  enum Model {
+    struct Request {
+        enum RequestType {
+            case some
+            case getTracks
+        }
     }
-    struct Response
-    {
+    struct Response {
+        enum ResponseType {
+            case some
+            case presentTracks
+        }
     }
-    struct ViewModel
-    {
+    struct ViewModel {
+        enum ViewModelData {
+            case some
+            case displayTracks
+        }
     }
   }
 }
