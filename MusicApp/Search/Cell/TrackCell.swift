@@ -30,11 +30,22 @@ class TrackCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    // MARK: переиспользование ячейки?
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        trackImageView.image = nil
+  //      trackImageView.layer.cornerRadius = 2
+    }
+    
     func set(viewModel: TrackCellViewModel) {
         
         trackNameLabel.text = viewModel.trackName
         artistNameLabel.text = viewModel.artistName
         collectionNameLabel.text = viewModel.collectionName
+        
+        guard let url = URL(string: viewModel.iconUrlString ?? "") else { return }
+        trackImageView.sd_setImage(with: url, completed: nil)
         
     }
     

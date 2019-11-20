@@ -19,6 +19,7 @@
 		3A7924C52385DFB600FDED8A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7924C42385DFB600FDED8A /* SearchViewController.swift */; };
 		3A7924C82385E44A00FDED8A /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A7924C72385E44A00FDED8A /* TrackCell.xib */; };
 		3A7924CA2385E46B00FDED8A /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7924C92385E46B00FDED8A /* TrackCell.swift */; };
+		3A7924CF2385FC6800FDED8A /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7924CE2385FC6800FDED8A /* FooterView.swift */; };
 		3A9329AD2381F9AC008F12BE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9329AC2381F9AC008F12BE /* NetworkService.swift */; };
 		3A9329D02382EDFA008F12BE /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9329CA2382EDFA008F12BE /* SearchPresenter.swift */; };
 		3A9329D12382EDFA008F12BE /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9329CB2382EDFA008F12BE /* SearchWorker.swift */; };
@@ -44,6 +45,7 @@
 		3A7924C42385DFB600FDED8A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		3A7924C72385E44A00FDED8A /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		3A7924C92385E46B00FDED8A /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
+		3A7924CE2385FC6800FDED8A /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		3A9329AC2381F9AC008F12BE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3A9329CA2382EDFA008F12BE /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		3A9329CB2382EDFA008F12BE /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
@@ -133,9 +135,18 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		3A7924CD2385FC5200FDED8A /* FooterView */ = {
+			isa = PBXGroup;
+			children = (
+				3A7924CE2385FC6800FDED8A /* FooterView.swift */,
+			);
+			path = FooterView;
+			sourceTree = "<group>";
+		};
 		3A9329BA2382E461008F12BE /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				3A7924CD2385FC5200FDED8A /* FooterView */,
 				3A7924C62385E41900FDED8A /* Cell */,
 				3A7924C22385DE7000FDED8A /* SearchViewController.storyboard */,
 				3A7924C42385DFB600FDED8A /* SearchViewController.swift */,
@@ -295,6 +306,7 @@
 				3A9329D92382F4D3008F12BE /* UIViewController + Storyboard.swift in Sources */,
 				3AA3709C237F40EC0079414C /* SearchResponse.swift in Sources */,
 				3A5014FF237F227600267ED4 /* ViewController.swift in Sources */,
+				3A7924CF2385FC6800FDED8A /* FooterView.swift in Sources */,
 				3A7924CA2385E46B00FDED8A /* TrackCell.swift in Sources */,
 				3A9329D52382EDFA008F12BE /* SearchInteractor.swift in Sources */,
 				3A5014FB237F227600267ED4 /* AppDelegate.swift in Sources */,

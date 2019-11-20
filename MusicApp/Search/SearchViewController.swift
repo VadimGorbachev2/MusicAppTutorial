@@ -20,6 +20,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     @IBOutlet weak var table: UITableView!
     private var timer: Timer?
     private let cellId = "cellId"
+    private lazy var footerView = FooterView()
    
    
     let searchController = UISearchController(searchResultsController: nil)
@@ -54,13 +55,14 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         
     }
     
-    // MARK: настройка search bar'a и navigation bar'a
+    // MARK: sutupTableView, setupSearchBar  ( настройка search bar'a и navigation bar'a )
     
     private func setupTableView() {
         table.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
         let nib = UINib(nibName: "TrackCell", bundle: nil)
         table.register( nib, forCellReuseIdentifier: TrackCell.reuseId)
+        table.tableFooterView = footerView
     }
     
     private func setupSearchBar() {
@@ -74,18 +76,20 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     func displayData(viewModel: Search.Model.ViewModel.ViewModelData) {
         
         switch viewModel {
-        case .some:
-            print("viewController .some")
         case .displayTracks(let searchViewModel):
             print("viewController .displayTracks")
             self.searchViewModel = searchViewModel
             table.reloadData()
+            footerView.hideLoader()
+        case .displayFooterView:
+            footerView.showLoader()
         }
+            
     }
     
 }
 
-// MARK: UITableViewDelegate, UITableViewDataSource
+// MARK: UITableViewDelegate, UITableViewDataSource extension
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
@@ -109,7 +113,21 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return 84
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Please enter search term above..."
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return searchViewModel.cells.count > 0 ? 0 : 250
+    }
+    
 }
+
+// MARK: UISearchBarDelegate extension ( Пересылка данных интерактору из search bar с таймером )
 
 extension SearchViewController: UISearchBarDelegate {
     
