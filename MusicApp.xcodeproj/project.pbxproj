@@ -17,6 +17,8 @@
 		3A50150F237F230000267ED4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A50150E237F230000267ED4 /* MainTabBarController.swift */; };
 		3A7924C32385DE7000FDED8A /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7924C22385DE7000FDED8A /* SearchViewController.storyboard */; };
 		3A7924C52385DFB600FDED8A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7924C42385DFB600FDED8A /* SearchViewController.swift */; };
+		3A7924C82385E44A00FDED8A /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A7924C72385E44A00FDED8A /* TrackCell.xib */; };
+		3A7924CA2385E46B00FDED8A /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7924C92385E46B00FDED8A /* TrackCell.swift */; };
 		3A9329AD2381F9AC008F12BE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9329AC2381F9AC008F12BE /* NetworkService.swift */; };
 		3A9329D02382EDFA008F12BE /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9329CA2382EDFA008F12BE /* SearchPresenter.swift */; };
 		3A9329D12382EDFA008F12BE /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9329CB2382EDFA008F12BE /* SearchWorker.swift */; };
@@ -40,6 +42,8 @@
 		3A50150E237F230000267ED4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3A7924C22385DE7000FDED8A /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
 		3A7924C42385DFB600FDED8A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		3A7924C72385E44A00FDED8A /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
+		3A7924C92385E46B00FDED8A /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		3A9329AC2381F9AC008F12BE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3A9329CA2382EDFA008F12BE /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		3A9329CB2382EDFA008F12BE /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
@@ -91,22 +95,48 @@
 				3A5014FE237F227600267ED4 /* ViewController.swift */,
 				3A50150E237F230000267ED4 /* MainTabBarController.swift */,
 				3AA37095237F2D7F0079414C /* SearchMusicViewController.swift */,
-				3AA3709B237F40EC0079414C /* SearchResponse.swift */,
-				3A9329AC2381F9AC008F12BE /* NetworkService.swift */,
 				3A5014FA237F227600267ED4 /* AppDelegate.swift */,
 				3A5014FC237F227600267ED4 /* SceneDelegate.swift */,
 				3A501500237F227600267ED4 /* Main.storyboard */,
 				3A501503237F228D00267ED4 /* Assets.xcassets */,
 				3A501505237F228D00267ED4 /* LaunchScreen.storyboard */,
+				3A7924CC2385ECF400FDED8A /* Models */,
 				3A9329DA2382F4DC008F12BE /* Helpers */,
 				3A9329BA2382E461008F12BE /* Search */,
 			);
 			path = MusicApp;
 			sourceTree = "<group>";
 		};
+		3A7924C62385E41900FDED8A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3A7924C72385E44A00FDED8A /* TrackCell.xib */,
+				3A7924C92385E46B00FDED8A /* TrackCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3A7924CB2385ECCE00FDED8A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3AA3709B237F40EC0079414C /* SearchResponse.swift */,
+				3A9329AC2381F9AC008F12BE /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3A7924CC2385ECF400FDED8A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3A7924CB2385ECCE00FDED8A /* Services */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		3A9329BA2382E461008F12BE /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				3A7924C62385E41900FDED8A /* Cell */,
 				3A7924C22385DE7000FDED8A /* SearchViewController.storyboard */,
 				3A7924C42385DFB600FDED8A /* SearchViewController.swift */,
 				3A9329CF2382EDFA008F12BE /* SearchInteractor.swift */,
@@ -204,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A501507237F228D00267ED4 /* LaunchScreen.storyboard in Resources */,
+				3A7924C82385E44A00FDED8A /* TrackCell.xib in Resources */,
 				3A501504237F228D00267ED4 /* Assets.xcassets in Resources */,
 				3A501502237F227600267ED4 /* Main.storyboard in Resources */,
 				3A7924C32385DE7000FDED8A /* SearchViewController.storyboard in Resources */,
@@ -264,6 +295,7 @@
 				3A9329D92382F4D3008F12BE /* UIViewController + Storyboard.swift in Sources */,
 				3AA3709C237F40EC0079414C /* SearchResponse.swift in Sources */,
 				3A5014FF237F227600267ED4 /* ViewController.swift in Sources */,
+				3A7924CA2385E46B00FDED8A /* TrackCell.swift in Sources */,
 				3A9329D52382EDFA008F12BE /* SearchInteractor.swift in Sources */,
 				3A5014FB237F227600267ED4 /* AppDelegate.swift in Sources */,
 				3A50150F237F230000267ED4 /* MainTabBarController.swift in Sources */,
