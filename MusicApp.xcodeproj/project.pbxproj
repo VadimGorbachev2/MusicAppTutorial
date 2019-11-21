@@ -29,6 +29,8 @@
 		3A9329D92382F4D3008F12BE /* UIViewController + Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9329D82382F4D3008F12BE /* UIViewController + Storyboard.swift */; };
 		3AA37096237F2D7F0079414C /* SearchMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA37095237F2D7F0079414C /* SearchMusicViewController.swift */; };
 		3AA3709C237F40EC0079414C /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA3709B237F40EC0079414C /* SearchResponse.swift */; };
+		3AC87635238672ED00C46968 /* TrackDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC87634238672ED00C46968 /* TrackDetailView.swift */; };
+		3AC876372386732400C46968 /* TrackDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC876362386732400C46968 /* TrackDetailView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		3A9329D82382F4D3008F12BE /* UIViewController + Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Storyboard.swift"; sourceTree = "<group>"; };
 		3AA37095237F2D7F0079414C /* SearchMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicViewController.swift; sourceTree = "<group>"; };
 		3AA3709B237F40EC0079414C /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
+		3AC87634238672ED00C46968 /* TrackDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailView.swift; sourceTree = "<group>"; };
+		3AC876362386732400C46968 /* TrackDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackDetailView.xib; sourceTree = "<group>"; };
 		89C1DA41C0499677970B6550 /* Pods_MusicApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D5280DC37CB78FC741C2444 /* Pods-MusicApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicApp.release.xcconfig"; path = "Target Support Files/Pods-MusicApp/Pods-MusicApp.release.xcconfig"; sourceTree = "<group>"; };
 		BFD52CEF92ED219BE3A0E381 /* Pods-MusicApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicApp.debug.xcconfig"; path = "Target Support Files/Pods-MusicApp/Pods-MusicApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 		3A9329BA2382E461008F12BE /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				3AC87633238672C600C46968 /* TrackDetailView */,
 				3A7924CD2385FC5200FDED8A /* FooterView */,
 				3A7924C62385E41900FDED8A /* Cell */,
 				3A7924C22385DE7000FDED8A /* SearchViewController.storyboard */,
@@ -165,6 +170,15 @@
 				3A9329D82382F4D3008F12BE /* UIViewController + Storyboard.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3AC87633238672C600C46968 /* TrackDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				3AC876362386732400C46968 /* TrackDetailView.xib */,
+				3AC87634238672ED00C46968 /* TrackDetailView.swift */,
+			);
+			path = TrackDetailView;
 			sourceTree = "<group>";
 		};
 		4AECD02FEA68003112B1AEAF /* Pods */ = {
@@ -245,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A501507237F228D00267ED4 /* LaunchScreen.storyboard in Resources */,
+				3AC876372386732400C46968 /* TrackDetailView.xib in Resources */,
 				3A7924C82385E44A00FDED8A /* TrackCell.xib in Resources */,
 				3A501504237F228D00267ED4 /* Assets.xcassets in Resources */,
 				3A501502237F227600267ED4 /* Main.storyboard in Resources */,
@@ -316,6 +331,7 @@
 				3A9329D32382EDFA008F12BE /* SearchModels.swift in Sources */,
 				3A5014FD237F227600267ED4 /* SceneDelegate.swift in Sources */,
 				3A9329D02382EDFA008F12BE /* SearchPresenter.swift in Sources */,
+				3AC87635238672ED00C46968 /* TrackDetailView.swift in Sources */,
 				3A9329AD2381F9AC008F12BE /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

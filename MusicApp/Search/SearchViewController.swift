@@ -101,31 +101,40 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = table.dequeueReusableCell(withIdentifier: TrackCell.reuseId, for: indexPath) as! TrackCell
         
         let cellViewModel = searchViewModel.cells[indexPath.row]
-        print("cellViewModel.previewUrl: ", cellViewModel.previewUrl)
+//        print("cellViewModel.previewUrl: ", cellViewModel.previewUrl!)
         cell.trackImageView.backgroundColor = .red
         cell.set(viewModel: cellViewModel)
         
         return cell
 
     }
-    
+    // высота ячейки
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 84
     }
-    
+    // параметры текста на таблице
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "Please enter search term above..."
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         return label
     }
-    
+    // настройка высоты текста на таблице
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return searchViewModel.cells.count > 0 ? 0 : 250
     }
-    
+    // реализация нажатия на ячейку таблицы
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellViewModel = searchViewModel.cells[indexPath.row]
+        let window = UIApplication.shared.keyWindow
+        let trackDetailView = Bundle.main.loadNibNamed("TrackDetailView", owner: self, options: nil)?.first as! TrackDetailView
+        window?.addSubview(trackDetailView)
+    }
 }
+
+
+
 
 // MARK: UISearchBarDelegate extension ( Пересылка данных интерактору из search bar с таймером )
 
