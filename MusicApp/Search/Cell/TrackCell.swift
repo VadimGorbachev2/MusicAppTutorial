@@ -35,7 +35,7 @@ class TrackCell: UITableViewCell {
         super.prepareForReuse()
         
         trackImageView.image = nil
-  //      trackImageView.layer.cornerRadius = 2
+  //      trackImageView.layer.cornerRadius = 6 // добавил в interface builder'е 
     }
     
     func set(viewModel: TrackCellViewModel) {
