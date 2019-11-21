@@ -15,7 +15,6 @@ import AVKit
 class TrackDetailView: UIView {
     
     // MARK: IBOuthlets
-    
     @IBOutlet weak var trackImageView: UIImageView!
     @IBOutlet weak var currentTimeSlider: UISlider!
     @IBOutlet weak var currentTimeLabel: UILabel!
@@ -31,17 +30,21 @@ class TrackDetailView: UIView {
         return avPlayer
     }()
     
-    
+    // MARK: awakeFromNib
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        trackImageView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.2705882353, blue: 0.3529411765, alpha: 1)
+        trackImageView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         trackImageView.layer.cornerRadius = 6
+        let scale: CGFloat = 0.8
+        self.trackImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        
+        
     }
     
-    // MARK:
-    
+    // MARK: Setup
     func set(viewModel: SearchViewModel.Cell) {
+        
         
         trackTitleLabel.text = viewModel.trackName
         authorTitleLabel.text = viewModel.artistName
@@ -49,11 +52,13 @@ class TrackDetailView: UIView {
         let string600 = viewModel.iconUrlString?.replacingOccurrences(of: "100x100", with: "600x600")
         guard let url = URL(string: string600 ?? "") else { return }
         trackImageView.sd_setImage(with: url, completed: nil)
+        
+        monitorStartTime()
+        observePlayerCurrentTime()
     }
-    // MARK:
     
+    // MARK: Music player setup
     private func playTrack(previewUrl: String?) {
-        print("МУЗЫКА ИГРАЕ!")
         
         guard let url = URL(string: previewUrl ?? "") else { return }
         let playerItem = AVPlayerItem(url: url)
@@ -61,13 +66,71 @@ class TrackDetailView: UIView {
         player.play()
     }
     
+    // MARK: Time setup (for start animation)
+    private func monitorStartTime() {
+        
+        let time = CMTimeMake(value: 1, timescale: 3)
+        let times = [NSValue(time: time)]
+        player.addBoundaryTimeObserver(forTimes: times, queue: .main) { [weak self] in
+            self?.enlargeTrackImageView()
+        }
+    }
+    
+    // MARK: CurrentTime
+    private func observePlayerCurrentTime() {
+        
+        let interval = CMTimeMake(value: 1, timescale: 2)
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] (time) in
+            self?.currentTimeLabel.text = time.toDisplayString()
+            
+            let durationTime = self?.player.currentItem?.duration
+            let currentDurationText = ((durationTime ?? CMTimeMake(value: 1, timescale: 1)) - time).toDisplayString()
+            self?.durationLabel.text = "-\(currentDurationText)"
+            self?.updateCurrentTimeSlider()
+        }
+    }
+    
+    // MARK: Slider logic
+    private func updateCurrentTimeSlider() {
+        
+        let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
+        let durationSeconds = CMTimeGetSeconds(player.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
+        let percentage = currentTimeSeconds / durationSeconds
+        self.currentTimeSlider.value = Float(percentage)
+    }
+    
+    // MARK: Animation
+    private func enlargeTrackImageView() {
+        
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.trackImageView.transform = .identity
+        }, completion: nil)
+    }
+    private func reduceTrackImageView() {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            let scale: CGFloat = 0.8
+            self.trackImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }, completion: nil)
+    }
+    
+    
     // MARK: IBActions
     @IBAction func handleCurrentTimeSlider(_ sender: Any) {
+        
+        let percentage = currentTimeSlider.value
+        guard let duration = player.currentItem?.duration else { return }
+        let durationInSeconds = CMTimeGetSeconds(duration)
+        let seekTimeInSeconds = Float64(percentage) * durationInSeconds
+        let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1)
+        player.seek(to: seekTime)
     }
     @IBAction func handleVolumeSlider(_ sender: Any) {
+        
+        player.volume = volumeSlider.value
     }
     
     @IBAction func dragDownButtonTapped(_ sender: Any) {
+       
         self.removeFromSuperview()
     }
     @IBAction func previousTrack(_ sender: Any) {
@@ -79,9 +142,11 @@ class TrackDetailView: UIView {
         if player.timeControlStatus == .paused {
             player.play()
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            enlargeTrackImageView()
         } else {
             player.pause()
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            reduceTrackImageView()
         }
     }
     
