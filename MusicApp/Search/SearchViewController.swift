@@ -21,6 +21,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     private var timer: Timer?
     private let cellId = "cellId"
     private lazy var footerView = FooterView()
+    weak var tabBarDekegate: MainTabBarControllerDelegate?
    
    
     let searchController = UISearchController(searchResultsController: nil)
@@ -31,6 +32,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     // MARK: setup
     
     private func setup() {
+       
         let viewController = self
         let interactor = SearchInteractor()
         let presenter = SearchPresenter()
@@ -58,6 +60,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     // MARK: sutupTableView, setupSearchBar  ( настройка search bar'a и navigation bar'a )
     
     private func setupTableView() {
+        
         table.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
         let nib = UINib(nibName: "TrackCell", bundle: nil)
@@ -66,6 +69,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     }
     
     private func setupSearchBar() {
+       
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.delegate = self
@@ -94,10 +98,12 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
         return searchViewModel.cells.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = table.dequeueReusableCell(withIdentifier: TrackCell.reuseId, for: indexPath) as! TrackCell
         
         let cellViewModel = searchViewModel.cells[indexPath.row]
@@ -110,10 +116,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     // высота ячейки
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return 84
     }
     // параметры текста на таблице
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         let label = UILabel()
         label.text = "Please enter search term above..."
         label.textAlignment = .center
@@ -122,16 +130,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     // настройка высоты текста на таблице
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
         return searchViewModel.cells.count > 0 ? 0 : 250
     }
     // реализация нажатия на ячейку таблицы
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let cellViewModel = searchViewModel.cells[indexPath.row]
-        let window = UIApplication.shared.keyWindow
-        let trackDetailView: TrackDetailView = TrackDetailView.loadFromNib()
-        trackDetailView.set(viewModel: cellViewModel)
-        trackDetailView.delegate = self                     // !!!!!
-        window?.addSubview(trackDetailView)
+        self.tabBarDekegate?.maximizeTrackDetailController(viewModel:  cellViewModel)
+      
     }
 }
 
@@ -143,9 +150,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         print(searchText)
-        
-        
+
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             self.interactor?.makeRequest( request: Search.Model.Request.RequestType.getTracks(searchTerm: searchText))
