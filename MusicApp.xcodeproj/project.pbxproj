@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3481A511DC0A6EE167CD3F9A /* Pods_MusicApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C1DA41C0499677970B6550 /* Pods_MusicApp.framework */; };
 		3A094EEC238732BB00567644 /* CMTime + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A094EEB238732BB00567644 /* CMTime + extension.swift */; };
+		3A094EEE2387EDB000567644 /* Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A094EED2387EDB000567644 /* Nib.swift */; };
 		3A5014FB237F227600267ED4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5014FA237F227600267ED4 /* AppDelegate.swift */; };
 		3A5014FD237F227600267ED4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5014FC237F227600267ED4 /* SceneDelegate.swift */; };
 		3A5014FF237F227600267ED4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5014FE237F227600267ED4 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		3A094EEB238732BB00567644 /* CMTime + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime + extension.swift"; sourceTree = "<group>"; };
+		3A094EED2387EDB000567644 /* Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nib.swift; sourceTree = "<group>"; };
 		3A5014F7237F227600267ED4 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A5014FA237F227600267ED4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A5014FC237F227600267ED4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				3A9329D82382F4D3008F12BE /* UIViewController + Storyboard.swift */,
 				3A094EEB238732BB00567644 /* CMTime + extension.swift */,
+				3A094EED2387EDB000567644 /* Nib.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				3A5014FF237F227600267ED4 /* ViewController.swift in Sources */,
 				3A7924CF2385FC6800FDED8A /* FooterView.swift in Sources */,
 				3A7924CA2385E46B00FDED8A /* TrackCell.swift in Sources */,
+				3A094EEE2387EDB000567644 /* Nib.swift in Sources */,
 				3A9329D52382EDFA008F12BE /* SearchInteractor.swift in Sources */,
 				3A5014FB237F227600267ED4 /* AppDelegate.swift in Sources */,
 				3A50150F237F230000267ED4 /* MainTabBarController.swift in Sources */,
