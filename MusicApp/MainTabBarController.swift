@@ -34,7 +34,7 @@ class MainTabBarController: UITabBarController {
         tabBar.tintColor = #colorLiteral(red: 0.9725490196, green: 0.2509803922, blue: 0.3725490196, alpha: 1)
         
         setupTrackDetailView()
-        searchViewController.tabBarDekegate = self          // !!!
+        searchViewController.tabBarDelegate = self          // !!!
         
         viewControllers = [
             generateViewController(rootViewController: searchViewController, image: #imageLiteral(resourceName: "ios10-apple-music-search-5nav-icon") , title: "Search"),

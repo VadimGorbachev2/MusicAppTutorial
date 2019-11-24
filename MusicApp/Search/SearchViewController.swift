@@ -21,7 +21,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     private var timer: Timer?
     private let cellId = "cellId"
     private lazy var footerView = FooterView()
-    weak var tabBarDekegate: MainTabBarControllerDelegate?
+    weak var tabBarDelegate: MainTabBarControllerDelegate?
    
    
     let searchController = UISearchController(searchResultsController: nil)
@@ -137,7 +137,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cellViewModel = searchViewModel.cells[indexPath.row]
-        self.tabBarDekegate?.maximizeTrackDetailController(viewModel:  cellViewModel)
+        self.tabBarDelegate?.maximizeTrackDetailController(viewModel:  cellViewModel)
       
     }
 }
